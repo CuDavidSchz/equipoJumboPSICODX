@@ -1,6 +1,6 @@
 -- Archivo para introducir las preguntas de la prueba Hartman en el catálogo preguntasHartman
 
-INSERT INTO preguntasHartman( idPrueba, fasePregunta, numeroPregunta, preguntaHartman, valorHartman)
+INSERT INTO preguntashartman( idPrueba, fasePregunta, numeroPregunta, preguntaHartman, valorHartman)
 VALUES
 
 -- Fase 1:

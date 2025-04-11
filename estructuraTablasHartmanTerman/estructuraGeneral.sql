@@ -1,9 +1,8 @@
-
 /*
     T E R M A N
     ---------------------------------------------------
 */
-CREATE TABLE `seriesTerman` (
+CREATE TABLE `seriesterman` (
   `idSerieTerman` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idPrueba` int(11) NOT NULL,
   `duracion` int NOT NULL,
@@ -12,28 +11,28 @@ CREATE TABLE `seriesTerman` (
   FOREIGN KEY (`idPrueba`) REFERENCES `pruebas`(`idPrueba`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `preguntasTerman` (
-  `idPreguntaTerman` int(11) NOT NULL PRIMARY KEY ,
+CREATE TABLE `preguntasterman` (
+  `idPreguntaTerman` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idSerieTerman` int(11) NOT NULL,
   `numeroPregunta` int(11) NOT NULL,
   `preguntaTerman` varchar(500) NOT NULL,
-  FOREIGN KEY (`idSerieTerman`) REFERENCES `seriesTerman`(`idSerieTerman`)
+  FOREIGN KEY (`idSerieTerman`) REFERENCES `seriesterman`(`idSerieTerman`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `opcionesTerman` (
+CREATE TABLE `opcionesterman` (
   `idOpcionTerman` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idPreguntaTerman` int(11) NOT NULL,
   `opcionTerman` int(11) NOT NULL,
   `descripcionTerman` varchar(100) NOT NULL,
   `esCorrecta` boolean NOT NULL,
-  FOREIGN KEY (`idPreguntaTerman`) REFERENCES `preguntasTerman`(`idPreguntaTerman`)
+  FOREIGN KEY (`idPreguntaTerman`) REFERENCES `preguntasterman`(`idPreguntaTerman`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*
     H A R T M A N
     ---------------------------------------------------
 */
-CREATE TABLE `preguntasHartman` (
+CREATE TABLE `preguntashartman` (
   `idPreguntaHartman` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `idPrueba` int(11) NOT NULL,
   `fasePregunta` int(11) NOT NULL,
@@ -42,38 +41,3 @@ CREATE TABLE `preguntasHartman` (
   `valorHartman` varchar(5) NOT NULL,
   FOREIGN KEY (`idPrueba`) REFERENCES `pruebas`(`idPrueba`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*
-    Creación de respuestasHartman
-    ---------------------------------------------------
-*/
-CREATE TABLE `respuestasHartman` (
-  `idAspirante` int(11) NOT NULL,
-  `idGrupo` int(11) NOT NULL,
-  `idPreguntaHartman` int(11) NOT NULL,
-  `idPrueba` int(11) NOT NULL,
-  `respuestaAbierta` varchar(500) NOT NULL,
-  `tiempoRespuesta` int NOT NULL,
-  FOREIGN KEY (`idAspirante`) REFERENCES `usuarios`(`idUsuario`),
-  FOREIGN KEY (`idGrupo`) REFERENCES `grupos`(`idGrupo`),
-  FOREIGN KEY (`idPreguntaHartman`) REFERENCES `preguntasHartman`(`idPreguntaHartman`),
-  FOREIGN KEY (`idPrueba`) REFERENCES `pruebas`(`idPrueba`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*
-    Creación de respuestasTerman
-    ---------------------------------------------------
-*/
-CREATE TABLE `respuestasTerman` (
-  `idAspirante` int(11) NOT NULL,
-  `idGrupo` int(11) NOT NULL,
-  `idPreguntaTerman` int(11) NOT NULL,
-  `idPrueba` int(11) NOT NULL,
-  `respuestaAbierta` varchar(500) NOT NULL,
-  `tiempoRespuesta` int NOT NULL,
-  FOREIGN KEY (`idAspirante`) REFERENCES `usuarios`(`idUsuario`),
-  FOREIGN KEY (`idGrupo`) REFERENCES `grupos`(`idGrupo`),
-  FOREIGN KEY (`idPreguntaTerman`) REFERENCES `preguntasTerman`(`idPreguntaTerman`),
-  FOREIGN KEY (`idPrueba`) REFERENCES `pruebas`(`idPrueba`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
